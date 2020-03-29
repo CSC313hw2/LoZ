@@ -84,6 +84,7 @@ public class Zelda {
                     }
                 }
             }
+
             // setting up the Koholint Island walls
             wallsKI = new Vector<>();
             for (int i = 0; i < ydimKI; i++) {
@@ -591,6 +592,8 @@ public class Zelda {
         Graphics g = appFrame.getGraphics();
         Graphics2D g2D = (Graphics2D) g;
         if (backgroundState.substring(0, 2).equals("KI")) {
+            //KI0809
+            //System.out.println("KI");
             int i = Integer.parseInt(backgroundState.substring(4, 6));
             int j = Integer.parseInt(backgroundState.substring(2, 4));
             if (i < backgroundKI.size()) {
@@ -598,6 +601,7 @@ public class Zelda {
                     g2D.drawImage(backgroundKI.elementAt(i).elementAt(j), XOFFSET, YOFFSET, null);
                 }
             }
+            //g2D.drawImage(backgroundKI);
         }
         if (backgroundState.substring(0, 2).equals("TC")) {
             int i = Integer.parseInt(backgroundState.substring(4, 6));
