@@ -44,8 +44,8 @@ public class Zelda {
         endgame = false;
         p1width = 20; //18.5;
         p1height = 20; //25;
-        p1originalX = (double) XOFFSET + ((double) WINWIDTH / 2.0) - (p1width / 2.0);
-        p1originalY = (double) YOFFSET + ((double) WINHEIGHT / 2.0) - (p1height / 2.0) + 10;
+        p1originalX = (double) XOFFSET + ((double) WINWIDTH / 2.0) - (p1width / 2.0) - 20;
+        p1originalY = (double) YOFFSET + ((double) WINHEIGHT / 2.0) - (p1height / 2.0) + 10; // + 10
         level = 3;
         audiolifetime = new Long(78000); // 78 seconds for KI.wav
         dropLifeLifetime = new Long(1000); // 1 second
@@ -97,21 +97,7 @@ public class Zelda {
 
             for (int i = 0; i < wallsKI.size(); i++) {
                 for (int j = 0; j < wallsKI.elementAt(i).size(); j++) {
-                    if (i == 5 && j == 10) {
-                        wallsKI.elementAt(i).elementAt(j).addElement(
-                                new ImageObject(270, 35, 68, 70, 0.0));
-                        wallsKI.elementAt(i).elementAt(j).addElement(
-                                new ImageObject(100, 100, 200, 35, 0.0));
-                        wallsKI.elementAt(i).elementAt(j).addElement(
-                                new ImageObject(100, 135, 35, 35, 0.0));
-                        wallsKI.elementAt(i).elementAt(j).addElement(
-                                new ImageObject(0, 165, 35, 135, 0.0));
-                        wallsKI.elementAt(i).elementAt(j).addElement(
-                                new ImageObject(100, 200, 35, 100, 0.0));
-                        wallsKI.elementAt(i).elementAt(j).addElement(
-                                new ImageObject(135, 270, 200, 35, 0.0));
-                    }
-                    if (i == 8 && j == 9) {
+                    if (i == 8 && j == 9) { //TODO: change i and j if grid images are renamed
                         wallsKI.elementAt(i).elementAt(j).addElement(
                                 new ImageObject(65, 0, 100, 175, 0.0));
                         wallsKI.elementAt(i).elementAt(j).addElement(
@@ -126,6 +112,80 @@ public class Zelda {
                                 new ImageObject(65, 265, 100, 40, 0.0));
                         wallsKI.elementAt(i).elementAt(j).addElement(
                                 new ImageObject(200, 265, 100, 40, 0.0));
+                    }
+                    if (i == 8 && j == 10) {
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(0, 0, 35, 320, 0.0));
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(0, 35, 172, 35, 0.0));
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(210, 35, 125, 35, 0.0));
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(0, 265, 340, 40, 0.0));
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(207, 70, 32, 70, 0.0));
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(107, 103, 103, 70, 0.0));
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(107, 169, 30, 70, 0.0));
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(139, 173, 36, 40, 0.0));
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(240, 167, 100, 65, 0.0));
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(240, 233, 36, 40, 0.0));
+                    }
+                    if (i == 7 && j == 10) {
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(203, 133, 130, 73, 0.0));
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(203, 143, 30, 135, 0.0));
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(0, 33, 32, 35, 0.0));
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(0, 167, 130, 70, 0.0));
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(0, 265, 340, 40, 0.0));
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(238, 0, 100, 70, 0.0));
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(130, 98, 38, 45, 0.0));
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(101, 0, 30, 240, 0.0));
+                    }
+                    if (i == 7 && j == 11) {
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(0, 0, 340, 108, 0.0));
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(0, 108, 32, 204, 0.0));
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(102, 133, 32, 180, 0.0));
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(170, 108, 30, 130, 0.0));
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(237, 133, 30, 180, 0.0));
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(237, 268, 100, 44, 0.0));
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(304, 167, 32, 73, 0.0));
+                    }
+                    if (i == 6 && j == 11) {
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(0, 0, 340, 108, 0.0));
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(0, 168, 32, 73, 0.0));
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(0, 267, 340, 50, 0.0));
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(70, 132, 30, 42, 0.0));
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(270, 132, 30, 42, 0.0));
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(70, 200, 30, 42, 0.0));
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(270, 200, 30, 42, 0.0));
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(170, 107, 32, 170, 0.0));
                     }
                 }
             }
@@ -232,13 +292,16 @@ public class Zelda {
         Graphics2D g2D = (Graphics2D) g;
         g2D.setColor(Color.green);
         //wall
-//        g2D.fillRect(65, 0, 100, 175);
-//        g2D.fillRect(165, 0, 35, 120);
-//        g2D.fillRect(200, 0, 100, 175);
-//        g2D.fillRect(0, 0, 65, 320);
-//        g2D.fillRect(300, 0, 30, 320);
-//        g2D.fillRect(65, 280, 100, 40);
-//        g2D.fillRect(200, 280, 100, 40);
+        g2D.fillRect(0, 0, 340, 108);
+        g2D.fillRect(0, 168, 32, 73);
+        g2D.fillRect(0, 267, 340, 50);
+        g2D.fillRect(70, 132, 30, 42);
+        g2D.fillRect(270, 132, 30, 42);
+        g2D.fillRect(70, 200, 30, 42);
+        g2D.fillRect(270, 200, 30, 42);
+        g2D.fillRect(170, 107, 32, 170);
+//        g2D.fillRect(304, 167, 32, 73);
+
     }
 
     private static class AudioLooper implements Runnable {
@@ -526,11 +589,21 @@ public class Zelda {
                 }
 
                 // check player and enemies against walls
-                if (backgroundState.substring(0, 6).equals("KI0510")) {
-                    checkMoversAgainstWalls(wallsKI.elementAt(5).elementAt(10));
-                }
+                //TODO: change i and j if grid images are renamed
                 if (backgroundState.substring(0, 6).equals("KI0809")) {
                     checkMoversAgainstWalls(wallsKI.elementAt(8).elementAt(9));
+                }
+                if (backgroundState.substring(0, 6).equals("KI0810")) {
+                    checkMoversAgainstWalls(wallsKI.elementAt(8).elementAt(10));
+                }
+                if (backgroundState.substring(0, 6).equals("KI0710")) {
+                    checkMoversAgainstWalls(wallsKI.elementAt(7).elementAt(10));
+                }
+                if (backgroundState.substring(0, 6).equals("KI0711")) {
+                    checkMoversAgainstWalls(wallsKI.elementAt(7).elementAt(11));
+                }
+                if (backgroundState.substring(0, 6).equals("KI0611")) {
+                    checkMoversAgainstWalls(wallsKI.elementAt(6).elementAt(11));
                 }
 
                 // check player against enemies
@@ -854,7 +927,7 @@ public class Zelda {
             aPressed = false;
             xPressed = false;
             lastPressed = 90.0;
-            backgroundState = "KI0809";
+            backgroundState = "KI0809"; //"KI0809"
             availableToDropLife = true;
             try {
                 clearEnemies();
