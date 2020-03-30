@@ -482,7 +482,7 @@ public class Zelda {
 
     private static void generateEnemies(String backgroundState) {
         if (backgroundState.substring(0, 6).equals("KI0809")) {
-            bluepigEnemies.addElement(new ImageObject(20, 90, 33, 33, 0.0));
+            bluepigEnemies.addElement(new ImageObject(80, 190, 33, 33, 0.0));
             bluepigEnemies.addElement(new ImageObject(250, 230, 33, 33, 0.0));
         }
         for (int i = 0; i < bluepigEnemies.size(); i++) {
@@ -1329,6 +1329,27 @@ public class Zelda {
         myPanel.getActionMap().put(input + " released", new KeyReleased(input));
     }
 
+//    private static void playMusic() {
+//        File musicPath = new File("");
+//        if (isInOverworld) {
+//            musicPath = new File("Overworld.wav");
+//        } else {
+//            musicPath = new File("Dungeon.wav");
+//        }
+//        if (musicPath.exists()) {
+//            try {
+//                AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
+//                Clip clip = AudioSystem.getClip();
+//                clip.open(audioInput);
+//                clip.start();
+//                clip.loop(Clip.LOOP_CONTINUOUSLY);
+//            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ioe) {
+//                //NOP
+//            }
+//        }
+//
+//    }
+
     public static void main(String[] args) {
         setup();
         appFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -1354,6 +1375,7 @@ public class Zelda {
         bindKey(myPanel, "F");
         appFrame.getContentPane().add(myPanel, "South");
         appFrame.setVisible(true);
+//        playMusic();
     }
 
     private static Boolean endgame;
