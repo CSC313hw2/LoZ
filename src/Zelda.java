@@ -152,6 +152,10 @@ public class Zelda {
                                 new ImageObject(130, 98, 38, 45, 0.0));
                         wallsKI.elementAt(i).elementAt(j).addElement(
                                 new ImageObject(101, 0, 30, 240, 0.0));
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(325, 70, 15, 72, 0.0));
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(325, 206, 15, 70, 0.0));
                     }
                     if (i == 7 && j == 11) {
                         wallsKI.elementAt(i).elementAt(j).addElement(
@@ -168,6 +172,10 @@ public class Zelda {
                                 new ImageObject(237, 268, 100, 44, 0.0));
                         wallsKI.elementAt(i).elementAt(j).addElement(
                                 new ImageObject(304, 167, 32, 73, 0.0));
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(325, 108, 30, 130, 0.0));
+                        wallsKI.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(325, 240, 30, 37, 0.0));
                     }
                     if (i == 6 && j == 11) {
                         wallsKI.elementAt(i).elementAt(j).addElement(
@@ -292,15 +300,8 @@ public class Zelda {
         Graphics2D g2D = (Graphics2D) g;
         g2D.setColor(Color.green);
         //wall
-        g2D.fillRect(0, 0, 340, 108);
-        g2D.fillRect(0, 168, 32, 73);
-        g2D.fillRect(0, 267, 340, 50);
-        g2D.fillRect(70, 132, 30, 42);
-        g2D.fillRect(270, 132, 30, 42);
-        g2D.fillRect(70, 200, 30, 42);
-        g2D.fillRect(270, 200, 30, 42);
-        g2D.fillRect(170, 107, 32, 170);
-//        g2D.fillRect(304, 167, 32, 73);
+        g2D.fillRect(0, 70, 20, 105);
+        g2D.fillRect(0, 240, 20, 37);
 
     }
 
@@ -464,15 +465,52 @@ public class Zelda {
                 p1.move(p1velocity * Math.cos(p1.getInternalAngle()), p1velocity * Math.sin(p1.getInternalAngle()));
                 int wrap = p1.screenWrap(XOFFSET, XOFFSET + WINWIDTH, YOFFSET,
                         YOFFSET + WINHEIGHT);
-                backgroundState = bgWrap(backgroundState, wrap);
+                //backgroundState = bgWrap(backgroundState, wrap);
+                changeBackground(wrap);
                 if (wrap != 0) {
                     clearEnemies();
                     generateEnemies(backgroundState);
                 }
             }
         }
-
         private double velocitystep;
+    }
+
+    private static void changeBackground(int wrap) {
+        if (wrap == 0) {
+            //NOP
+        } else if (backgroundState.substring(0, 6).equals("KI0809")) {
+            if (wrap == 3) { //down
+                p1.moveto(185, 70);
+                backgroundState = "KI0810";
+            }
+        } else if (backgroundState.substring(0, 6).equals("KI0810")) {
+            if (wrap == 1) { //right
+                p1.moveto(15, p1.getY());
+                backgroundState = "KI0710";
+            } else if (wrap == 4) { //up
+                p1.moveto(175, 280);
+                backgroundState = "KI0809";
+            }
+        } else if (backgroundState.substring(0, 6).equals("KI0710")) {
+            if (wrap == 2) { //left
+                p1.moveto(325, p1.getY());
+                backgroundState = "KI0810";
+            } else if (wrap == 4) { //up
+                p1.moveto(p1.getX(), 295);
+                backgroundState = "KI0711";
+            }
+        } else if (backgroundState.substring(0, 6).equals("KI0711")) {
+            if (wrap == 3) { //down
+                p1.moveto(p1.getX(), 60);
+                backgroundState = "KI0710";
+            }
+        } else if (backgroundState.substring(0, 6).equals("KI0611")) {
+            if (wrap == 2) { //left
+                p1.move(325, p1.getY());
+                backgroundState = "KI0711";
+            }
+        }
     }
 
     private static void clearEnemies() {
@@ -1328,6 +1366,7 @@ public class Zelda {
         myPanel.getInputMap(IFW).put(KeyStroke.getKeyStroke("released " + input), input + " released");
         myPanel.getActionMap().put(input + " released", new KeyReleased(input));
     }
+
 
 //    private static void playMusic() {
 //        File musicPath = new File("");
