@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.Vector;
 import java.util.Random;
 import java.time.LocalTime;
@@ -15,8 +16,6 @@ import java.io.File;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import javax.sound.sampled.AudioInputStream;
@@ -46,7 +45,7 @@ public class Zelda {
         p1width = 20; //18.5;
         p1height = 20; //25;
         p1originalX = (double) XOFFSET + ((double) WINWIDTH / 2.0) - (p1width / 2.0);
-        p1originalY = (double) YOFFSET + ((double) WINHEIGHT / 2.0) - (p1height / 2.0);
+        p1originalY = (double) YOFFSET + ((double) WINHEIGHT / 2.0) - (p1height / 2.0) + 10;
         level = 3;
         audiolifetime = new Long(78000); // 78 seconds for KI.wav
         dropLifeLifetime = new Long(1000); // 1 second
@@ -114,23 +113,19 @@ public class Zelda {
                     }
                     if (i == 8 && j == 9) {
                         wallsKI.elementAt(i).elementAt(j).addElement(
-                                new ImageObject(0, 35, 135, 35, 0.0));
+                                new ImageObject(65, 0, 100, 175, 0.0));
                         wallsKI.elementAt(i).elementAt(j).addElement(
-                                new ImageObject(100, 70, 35, 140, 0.0));
+                                new ImageObject(165, 0, 35, 120, 0.0));
                         wallsKI.elementAt(i).elementAt(j).addElement(
-                                new ImageObject(35, 135, 35, 100, 0.0));
+                                new ImageObject(200, 0, 100, 175, 0.0));
                         wallsKI.elementAt(i).elementAt(j).addElement(
-                                new ImageObject(0, 170, 35, 70, 0.0));
+                                new ImageObject(0, 0, 65, 320, 0.0));
                         wallsKI.elementAt(i).elementAt(j).addElement(
-                                new ImageObject(0, 235, 35, 70, 0.0));
+                                new ImageObject(300, 0, 30, 320, 0.0));
                         wallsKI.elementAt(i).elementAt(j).addElement(
-                                new ImageObject(0, 270, 135, 35, 0.0));
+                                new ImageObject(65, 265, 100, 40, 0.0));
                         wallsKI.elementAt(i).elementAt(j).addElement(
-                                new ImageObject(170, 270, 135, 35, 0.0));
-                        wallsKI.elementAt(i).elementAt(j).addElement(
-                                new ImageObject(300, 35, 35, 270, 0.0));
-                        wallsKI.elementAt(i).elementAt(j).addElement(
-                                new ImageObject(235, 35, 70, 35, 0.0));
+                                new ImageObject(200, 265, 100, 40, 0.0));
                     }
                 }
             }
@@ -219,6 +214,7 @@ public class Zelda {
         public void run() {
             while (endgame == false) {
                 backgroundDraw();
+                //testDraw();
                 enemiesDraw();
                 playerDraw();
                 healthDraw();
@@ -228,6 +224,21 @@ public class Zelda {
                 }
             }
         }
+    }
+
+    //for debugging
+    private static void testDraw() {
+        Graphics g = appFrame.getGraphics();
+        Graphics2D g2D = (Graphics2D) g;
+        g2D.setColor(Color.green);
+        //wall
+//        g2D.fillRect(65, 0, 100, 175);
+//        g2D.fillRect(165, 0, 35, 120);
+//        g2D.fillRect(200, 0, 100, 175);
+//        g2D.fillRect(0, 0, 65, 320);
+//        g2D.fillRect(300, 0, 30, 320);
+//        g2D.fillRect(65, 280, 100, 40);
+//        g2D.fillRect(200, 280, 100, 40);
     }
 
     private static class AudioLooper implements Runnable {
