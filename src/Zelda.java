@@ -1,3 +1,5 @@
+package com.company;
+
 import java.awt.*;
 import java.util.Vector;
 import java.util.Random;
@@ -43,6 +45,7 @@ public class Zelda {
         endgame = false;
         p1width = 20; //18.5;
         p1height = 20; //25;
+        moneyCount = 0;
         p1originalX = (double) XOFFSET + ((double) WINWIDTH / 2.0) - (p1width / 2.0) - 20;
         p1originalY = (double) YOFFSET + ((double) WINHEIGHT / 2.0) - (p1height / 2.0) + 10; // + 10
         level = 3;
@@ -255,6 +258,10 @@ public class Zelda {
                     link.addElement(ImageIO.read(new File(filename)));
                 }
             }
+            //rupee images
+            rupees = new Vector<>();
+            rupee = new Vector<>();
+            rupee.addElement(ImageIO.read(new File("rupee.png")));
             // BluePig Enemy's images
             bluepigEnemies = new Vector<>();
             bluepigEnemy = new Vector<>();
@@ -283,8 +290,10 @@ public class Zelda {
                 backgroundDraw();
                 //testDraw();
                 enemiesDraw();
+                rupeesDraw();
                 playerDraw();
                 healthDraw();
+                rupeeCount();
                 try {
                     Thread.sleep(32);
                 } catch (InterruptedException e) {
@@ -472,7 +481,9 @@ public class Zelda {
                 }
                 if (wrap != 0) {
                     clearEnemies();
+                    clearRupees();
                     generateEnemies(backgroundState);
+                    generateRupees(backgroundState);
                 }
             }
         }
@@ -561,13 +572,39 @@ public class Zelda {
         bubblebossEnemies.clear();
     }
 
+    private static void clearRupees() {
+        rupees.clear();
+    }
+
     private static void generateEnemies(String backgroundState) {
         if (backgroundState.substring(0, 6).equals("KI0809")) {
             bluepigEnemies.addElement(new ImageObject(80, 190, 33, 33, 0.0));
             bluepigEnemies.addElement(new ImageObject(250, 230, 33, 33, 0.0));
+        } else if (backgroundState.substring(0, 6).equals("KI0810")) {
+            bluepigEnemies.addElement(new ImageObject(250, 100, 33, 33, 0.0));
+        } else if (backgroundState.substring(0, 6).equals("KI0710")) {
+            bluepigEnemies.addElement(new ImageObject(250, 100, 33, 33, 0.0));
+        } else if (backgroundState.substring(0, 6).equals("KI0711")) {
+            bluepigEnemies.addElement(new ImageObject(50, 130, 33, 33, 0.0));
         }
         for (int i = 0; i < bluepigEnemies.size(); i++) {
             bluepigEnemies.elementAt(i).setMaxFrames(25);
+        }
+    }
+
+    private static void generateRupees(String backgroundState) {
+        if (backgroundState.substring(0, 6).equals("KI0809")) {
+            rupees.addElement(new ImageObject(80, 190, 33, 33, 0.0));
+            rupees.addElement(new ImageObject(250, 230, 33, 33, 0.0));
+        } else if (backgroundState.substring(0, 6).equals("KI0810")) {
+            rupees.addElement(new ImageObject(250, 100, 33, 33, 0.0));
+        } else if (backgroundState.substring(0, 6).equals("KI0710")) {
+            rupees.addElement(new ImageObject(250, 100, 33, 33, 0.0));
+        } else if (backgroundState.substring(0, 6).equals("KI0711")) {
+            rupees.addElement(new ImageObject(50, 130, 33, 33, 0.0));
+        }
+        for (int i = 0; i < rupees.size(); i++) {
+            rupees.elementAt(i).setMaxFrames(25);
         }
     }
 
@@ -657,15 +694,15 @@ public class Zelda {
                     if (collisionOccurs(p1, doorKItoTC)) {
                         p1.moveto(156, 265);
                         backgroundState = "TC0305";
-                        //clip.stop();
-                        //playAudio(backgroundState);
+                        clip.stop();
+                        playAudio(backgroundState);
                     }
                 } else if (backgroundState.substring(0, 6).equals("TC0305")) {
                     if (collisionOccurs(p1, doorTCtoKI)) {
                         p1.moveto(175, 155);
                         backgroundState = "KI0809";
-                        //clip.stop();
-                        //playAudio(backgroundState);
+                        clip.stop();
+                        playAudio(backgroundState);
                     }
                 }
 
@@ -696,6 +733,15 @@ public class Zelda {
                         if (availableToDropLife) {
                             p1.setDropLife(1);
                         }
+                    }
+                }
+
+                // check player against rupees
+                for (int i = 0; i < rupees.size(); i++) {
+                    if (collisionOccurs(p1, rupees.elementAt(i))) {
+                        //System.out.println( "Still Colliding: " + i + ", " + System.currentTimeMillis() );
+                        moneyCount += 5;
+                        rupees.remove(i);
                     }
                 }
 
@@ -872,6 +918,25 @@ public class Zelda {
         }
     }
 
+    private static void rupeeCount() {
+        Graphics g = appFrame.getGraphics();
+        Graphics2D g2D = (Graphics2D) g;
+        g2D.setFont(g.getFont().deriveFont(25f));
+        g2D.setColor(Color.GREEN);
+        g2D.drawImage(rotateImageObject(p1).filter(rupee.elementAt(0), null), XOFFSET + 10, YOFFSET + 15, null);
+        g2D.drawString(": " + moneyCount, XOFFSET + 20, YOFFSET + 45);
+    }
+
+    private static void rupeesDraw() {
+        Graphics g = appFrame.getGraphics();
+        Graphics2D g2D = (Graphics2D) g;
+        for (int i = 0; i < rupees.size(); i++) {
+            g2D.drawImage(rotateImageObject(rupees.elementAt(i)).filter(rupee.elementAt(0), null), (int) (rupees.elementAt(i).getX() + 0.5), (int) (rupees.elementAt(i).getY() + 0.5), null);
+
+        }
+
+    }
+
     private static void enemiesDraw() {
         Graphics g = appFrame.getGraphics();
         Graphics2D g2D = (Graphics2D) g;
@@ -1013,6 +1078,8 @@ public class Zelda {
             try {
                 clearEnemies();
                 generateEnemies(backgroundState);
+                clearRupees();
+                generateRupees(backgroundState);
             } catch (java.lang.NullPointerException jlnpe) {
             }
             p1 = new ImageObject(p1originalX, p1originalY, p1width, p1height, 0.0);
@@ -1410,28 +1477,6 @@ public class Zelda {
         myPanel.getActionMap().put(input + " released", new KeyReleased(input));
     }
 
-
-//    private static void playMusic() {
-//        File musicPath = new File("");
-//        if (isInOverworld) {
-//            musicPath = new File("Overworld.wav");
-//        } else {
-//            musicPath = new File("Dungeon.wav");
-//        }
-//        if (musicPath.exists()) {
-//            try {
-//                AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
-//                Clip clip = AudioSystem.getClip();
-//                clip.open(audioInput);
-//                clip.start();
-//                clip.loop(Clip.LOOP_CONTINUOUSLY);
-//            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ioe) {
-//                //NOP
-//            }
-//        }
-//
-//    }
-
     public static void main(String[] args) {
         setup();
         appFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -1450,6 +1495,7 @@ public class Zelda {
         JButton newGameButton = new JButton("Start");
         newGameButton.addActionListener(new StartGame());
         myPanel.add(newGameButton);
+
         bindKey(myPanel, "UP");
         bindKey(myPanel, "DOWN");
         bindKey(myPanel, "LEFT");
@@ -1457,7 +1503,7 @@ public class Zelda {
         bindKey(myPanel, "F");
         appFrame.getContentPane().add(myPanel, "South");
         appFrame.setVisible(true);
-//        playMusic();
+
     }
 
     private static Boolean endgame;
@@ -1476,6 +1522,8 @@ public class Zelda {
     private static BufferedImage leftHeart;
     private static BufferedImage rightHeart;
     private static Vector<BufferedImage> bluepigEnemy;
+    private static Vector<BufferedImage> rupee;
+    private static Vector<ImageObject> rupees;
     private static Vector<ImageObject> bluepigEnemies;
     private static Vector<ImageObject> bubblebossEnemies;
     private static ImageObject doorKItoTC;
@@ -1503,6 +1551,7 @@ public class Zelda {
     private static int YOFFSET;
     private static int WINWIDTH;
     private static int WINHEIGHT;
+    private static int moneyCount;
     private static double pi;
     private static double quarterPi;
     private static double halfPi;
