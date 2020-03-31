@@ -2,7 +2,6 @@ import java.awt.*;
 import java.util.Vector;
 import java.util.Random;
 import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
@@ -300,8 +299,7 @@ public class Zelda {
         Graphics2D g2D = (Graphics2D) g;
         g2D.setColor(Color.green);
         //wall
-        g2D.fillRect(0, 70, 20, 105);
-        g2D.fillRect(0, 240, 20, 37);
+        g2D.fillRect(165, 123, 35, 30);
 
     }
 
@@ -466,7 +464,12 @@ public class Zelda {
                 int wrap = p1.screenWrap(XOFFSET, XOFFSET + WINWIDTH, YOFFSET,
                         YOFFSET + WINHEIGHT);
                 //backgroundState = bgWrap(backgroundState, wrap);
-                changeBackground(wrap);
+                if (backgroundState.substring(0, 2).equals("KI")) {
+                    changeWorldBackground(wrap);
+                }
+                if (backgroundState.substring(0, 2).equals("TC")) {
+                    changeDungeonBackground(wrap);
+                }
                 if (wrap != 0) {
                     clearEnemies();
                     generateEnemies(backgroundState);
@@ -476,7 +479,7 @@ public class Zelda {
         private double velocitystep;
     }
 
-    private static void changeBackground(int wrap) {
+    private static void changeWorldBackground(int wrap) {
         if (wrap == 0) {
             //NOP
         } else if (backgroundState.substring(0, 6).equals("KI0809")) {
@@ -509,6 +512,46 @@ public class Zelda {
             if (wrap == 2) { //left
                 p1.move(325, p1.getY());
                 backgroundState = "KI0711";
+            }
+        }
+    }
+
+    private static void changeDungeonBackground(int wrap) {
+        if (wrap == 0) {
+            //NOP
+        } else if (backgroundState.substring(0, 6).equals("TC0305")) {
+            if (wrap == 1) { //right
+                p1.moveto(15, p1.getY());
+                backgroundState = "TC0304";
+            }
+        } else if (backgroundState.substring(0, 6).equals("TC0304")) {
+            if (wrap == 1) { //right
+                p1.moveto(15, p1.getY());
+                backgroundState = "TC0302";
+            } else if (wrap == 2) { //left
+                p1.moveto(320, p1.getY());
+                backgroundState = "TC0305";
+            }
+        } else if (backgroundState.substring(0, 6).equals("TC0303")) {
+            if (wrap == 1) { //right
+                p1.moveto(15, p1.getY());
+                backgroundState = "TC0206";
+            } else if (wrap == 3) { //down
+                p1.moveto(p1.getX(), 65);
+                backgroundState = "TC0302";
+            }
+        } else if (backgroundState.substring(0, 6).equals("TC0302")) {
+            if (wrap == 2) { //left
+                p1.moveto(320, p1.getY());
+                backgroundState = "TC0304";
+            } else if (wrap == 4) { //up
+                p1.moveto(p1.getX(), 285);
+                backgroundState = "TC0303";
+            }
+        } else if (backgroundState.substring(0, 6).equals("TC0206")) {
+            if (wrap == 2) { //left
+                p1.moveto(310, p1.getY());
+                backgroundState = "TC0303";
             }
         }
     }
@@ -610,19 +653,19 @@ public class Zelda {
             //Random randomNumbers = new Random( LocalTime.now().getNano() );
             while (endgame == false) {
                 // check player against doors in given scenes
-                if (backgroundState.substring(0, 6).equals("KI0511")) {
+                if (backgroundState.substring(0, 6).equals("KI0809")) {
                     if (collisionOccurs(p1, doorKItoTC)) {
-                        p1.moveto(p1originalX, p1originalY);
+                        p1.moveto(156, 265);
                         backgroundState = "TC0305";
-                        clip.stop();
-                        playAudio(backgroundState);
+                        //clip.stop();
+                        //playAudio(backgroundState);
                     }
                 } else if (backgroundState.substring(0, 6).equals("TC0305")) {
                     if (collisionOccurs(p1, doorTCtoKI)) {
-                        p1.moveto(p1originalX, p1originalY);
-                        backgroundState = "KI0511";
-                        clip.stop();
-                        playAudio(backgroundState);
+                        p1.moveto(175, 155);
+                        backgroundState = "KI0809";
+                        //clip.stop();
+                        //playAudio(backgroundState);
                     }
                 }
 
@@ -980,8 +1023,8 @@ public class Zelda {
             p1.setlastposy(p1originalY);
             p1.setLife(6);
             p1.setMaxLife(6);
-            doorKItoTC = new ImageObject(200, 55, 35, 35, 0.0);
-            doorTCtoKI = new ImageObject(150, 270, 35, 35, 0.0);
+            doorKItoTC = new ImageObject(165, 120, 35, 20, 0.0);
+            doorTCtoKI = new ImageObject(150, 300, 35, 20, 0.0);
             try {
                 Thread.sleep(50);
             } catch (InterruptedException ie) {
