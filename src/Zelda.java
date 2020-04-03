@@ -1,5 +1,3 @@
-package com.company;
-
 import java.awt.*;
 import java.util.Vector;
 import java.util.Random;
@@ -45,7 +43,6 @@ public class Zelda {
         endgame = false;
         p1width = 20; //18.5;
         p1height = 20; //25;
-        moneyCount = 0;
         p1originalX = (double) XOFFSET + ((double) WINWIDTH / 2.0) - (p1width / 2.0) - 20;
         p1originalY = (double) YOFFSET + ((double) WINHEIGHT / 2.0) - (p1height / 2.0) + 10; // + 10
         level = 3;
@@ -236,6 +233,7 @@ public class Zelda {
                     }
                 }
             }
+
             // setting up the Tail Cave walls
             wallsTC = new Vector<>();
             for (int i = 0; i < ydimTC; i++) {
@@ -246,6 +244,121 @@ public class Zelda {
                 }
                 wallsTC.add(temp);
             }
+
+            for (int i = 0; i < wallsTC.size(); i++) {
+                for (int j = 0; j < wallsTC.elementAt(i).size(); j++) {
+                    if (i == 3 && j == 5) { //TODO: change i and j if grid images are renamed
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(0, 0, 340, 72, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(0, 268, 120, 45, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(216, 268, 120, 45, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(0, 40, 30, 100, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(302, 40, 35, 100, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(0, 200, 30, 100, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(302, 200, 35, 100, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(35, 75, 30, 30, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(35, 230, 30, 30, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(270, 75, 30, 30, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(270, 230, 30, 30, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(120, 250, 30, 45, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(187, 250, 28, 45, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(0, 130, 4, 70, 0.0));
+                    }
+                    if (i == 3 && j == 4) {
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(0, 0, 100, 140, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(100, 0, 40, 70, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(140, 0, 60, 140, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(200, 0, 40, 70, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(240, 0, 100, 140, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(0, 200, 100, 100, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(100, 265, 140, 30, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(240, 200, 100, 100, 0.0));
+                    }
+                    if (i == 3 && j == 3) {
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(0, 0, 340, 75, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(0, 0, 137, 110, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(204, 0, 135, 110, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(0, 110, 35, 200, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(305, 110, 35, 79, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(305, 219, 35, 190, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(0, 267, 153, 35, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(186, 267, 153, 35, 0.0));
+                    }
+                    if (i == 3 && j == 2) {
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(0, 0, 153, 75, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(187, 0, 140, 75, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(0, 0, 35, 140, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(305, 0, 35, 310, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(0, 200, 35, 110, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(0, 265, 340, 75, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(37, 230, 33, 35, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(271, 230, 33, 35, 0.0));
+                    }
+                    if (i == 2 && j == 6) {
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(0, 0, 251, 75, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(285, 0, 45, 75, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(0, 75, 100, 35, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(0, 110, 33, 80, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(0, 218, 33, 80, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(0, 268, 118, 35, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(150, 268, 170, 35, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(235, 167, 90, 130, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(302, 0, 35, 360, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(118, 292, 42, 5, 0.0));
+                        wallsTC.elementAt(i).elementAt(j).addElement(
+                                new ImageObject(250, 0, 35, 45, 0.0));
+                    }
+                }
+            }
+
+
             player = ImageIO.read(new File("link00.png"));
             // Link's images
             link = new Vector<>();
@@ -308,7 +421,13 @@ public class Zelda {
         Graphics2D g2D = (Graphics2D) g;
         g2D.setColor(Color.green);
         //wall
-        g2D.fillRect(165, 123, 35, 30);
+        g2D.fillRect(0, 0, 340, 72);
+        g2D.fillRect(0, 278, 120, 45);
+        g2D.fillRect(216, 278, 120, 45);
+        g2D.fillRect(0, 40, 30, 100);
+        g2D.fillRect(302, 40, 35, 100);
+        g2D.fillRect(0, 200, 30, 100);
+        g2D.fillRect(302, 200, 35, 100);
 
     }
 
@@ -695,33 +814,50 @@ public class Zelda {
                         p1.moveto(156, 265);
                         backgroundState = "TC0305";
                         clip.stop();
+                        clearEnemies();
+                        clearRupees();
                         playAudio(backgroundState);
+                        generateEnemies(backgroundState);
+                        generateRupees(backgroundState);
                     }
                 } else if (backgroundState.substring(0, 6).equals("TC0305")) {
                     if (collisionOccurs(p1, doorTCtoKI)) {
                         p1.moveto(175, 155);
                         backgroundState = "KI0809";
                         clip.stop();
+                        clearEnemies();
+                        clearRupees();
                         playAudio(backgroundState);
+                        generateEnemies(backgroundState);
+                        generateRupees(backgroundState);
                     }
                 }
 
-                // check player and enemies against walls
+                // check player and enemies against walls in overworld
                 //TODO: change i and j if grid images are renamed
                 if (backgroundState.substring(0, 6).equals("KI0809")) {
                     checkMoversAgainstWalls(wallsKI.elementAt(8).elementAt(9));
-                }
-                if (backgroundState.substring(0, 6).equals("KI0810")) {
+                } else if (backgroundState.substring(0, 6).equals("KI0810")) {
                     checkMoversAgainstWalls(wallsKI.elementAt(8).elementAt(10));
-                }
-                if (backgroundState.substring(0, 6).equals("KI0710")) {
+                } else if (backgroundState.substring(0, 6).equals("KI0710")) {
                     checkMoversAgainstWalls(wallsKI.elementAt(7).elementAt(10));
-                }
-                if (backgroundState.substring(0, 6).equals("KI0711")) {
+                } else if (backgroundState.substring(0, 6).equals("KI0711")) {
                     checkMoversAgainstWalls(wallsKI.elementAt(7).elementAt(11));
-                }
-                if (backgroundState.substring(0, 6).equals("KI0611")) {
+                } else if (backgroundState.substring(0, 6).equals("KI0611")) {
                     checkMoversAgainstWalls(wallsKI.elementAt(6).elementAt(11));
+                }
+
+                // check player and enemies against walls in dungeon
+                if (backgroundState.substring(0, 6).equals("TC0305")) {
+                    checkMoversAgainstWalls(wallsTC.elementAt(3).elementAt(5));
+                } else if (backgroundState.substring(0, 6).equals("TC0304")) {
+                    checkMoversAgainstWalls(wallsTC.elementAt(3).elementAt(4));
+                } else if (backgroundState.substring(0, 6).equals("TC0303")) {
+                    checkMoversAgainstWalls(wallsTC.elementAt(3).elementAt(3));
+                } else if (backgroundState.substring(0, 6).equals("TC0302")) {
+                    checkMoversAgainstWalls(wallsTC.elementAt(3).elementAt(2));
+                } else if (backgroundState.substring(0, 6).equals("TC0206")) {
+                    checkMoversAgainstWalls(wallsTC.elementAt(2).elementAt(6));
                 }
 
                 // check player against enemies
@@ -745,11 +881,6 @@ public class Zelda {
                     }
                 }
 
-                // TODO: check enemies against walls
-                // TODO: check player against deep water or pits
-                // TODO: check player against enemy arrows
-
-                // TODO: check enemies against player weapons
             }
         }
 
@@ -926,15 +1057,12 @@ public class Zelda {
         g2D.drawImage(rotateImageObject(p1).filter(rupee.elementAt(0), null), XOFFSET + 10, YOFFSET + 15, null);
         g2D.drawString(": " + moneyCount, XOFFSET + 20, YOFFSET + 45);
     }
-
     private static void rupeesDraw() {
         Graphics g = appFrame.getGraphics();
         Graphics2D g2D = (Graphics2D) g;
         for (int i = 0; i < rupees.size(); i++) {
             g2D.drawImage(rotateImageObject(rupees.elementAt(i)).filter(rupee.elementAt(0), null), (int) (rupees.elementAt(i).getX() + 0.5), (int) (rupees.elementAt(i).getY() + 0.5), null);
-
         }
-
     }
 
     private static void enemiesDraw() {
@@ -1495,7 +1623,6 @@ public class Zelda {
         JButton newGameButton = new JButton("Start");
         newGameButton.addActionListener(new StartGame());
         myPanel.add(newGameButton);
-
         bindKey(myPanel, "UP");
         bindKey(myPanel, "DOWN");
         bindKey(myPanel, "LEFT");
@@ -1503,7 +1630,6 @@ public class Zelda {
         bindKey(myPanel, "F");
         appFrame.getContentPane().add(myPanel, "South");
         appFrame.setVisible(true);
-
     }
 
     private static Boolean endgame;
